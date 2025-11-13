@@ -1,5 +1,5 @@
 <div align="center">
-<svg fill="#00ffff" width="72px" height="72px" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" stroke="#00ffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M16 12v4l-5-4H0V0h16v12zm-2-2V2H2v8h12zm-2.5 0l2.5 2v-2h-2.5zM4 4h8v2H4V4z" fill-rule="evenodd"></path> </g></svg>
+  <img src="https://github.com/user-attachments/assets/2ce9e10e-ee8a-411a-b166-172a30ad9752" width="72" alt="Logo"/>
   <p><strong>ESP32 based Voice Assistant</strong></p>
 </div>
 <br>
@@ -23,16 +23,16 @@ The **ESP32** handles real-time audio capture and playback, while the Python bas
 
 ```mermaid
 flowchart TD
-    A[User Speech] --> B[ESP32 Microphone - INMP441]
-    B --> |16 kHz PCM Audio| C[WiFi WebSocket Stream]
-    C --> D[Python AI Server]
+    A["User Speech"] --> B["ESP32 Microphone - INMP441"]
+    B --> |"16 kHz PCM Audio"| C["WiFi WebSocket Stream"]
+    C --> D["Python AI Server"]
 
-    D --> E1[STT: Whisper Model (base)]
-    E1 --> E2[LLM: Gemini 2.5 Flash]
-    E2 --> E3[TTS: Piper Neural Voice]
+    D --> E1["STT - Whisper Model (base)"]
+    E1 --> E2["LLM - Gemini 2.5 Flash"]
+    E2 --> E3["TTS - Piper Neural Voice"]
 
-    E3 --> |8-bit PCM Audio Stream| F[ESP32 DAC Output]
-    F --> G[Speaker / LM386 Amplifier]
+    E3 --> |"8-bit PCM Audio Stream"| F["ESP32 DAC Output"]
+    F --> G["Speaker / LM386 Amplifier"]
 
     subgraph ESP32_Device
         B
@@ -55,7 +55,7 @@ flowchart TD
 
 | Component                                                                                                                                                                   | Function                                                          | Connection                 |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- | -------------------------- |
-| **[ESP32-WROOM-32 38Pin Development Board](https://robu.in/product/esp32-38pin-development-board-wifibluetooth-ultra-low-power-consumption-dual-core/)**                    | Main microcontroller handling Wi-Fi, I2S mic input and DAC output | ,                          |
+| **[ESP32-WROOM-32 38Pin Development Board](https://robu.in/product/esp32-38pin-development-board-wifibluetooth-ultra-low-power-consumption-dual-core/)**                    | Main microcontroller handling Wi-Fi, I2S mic input and DAC output |                           |
 | **[INMP441 MEMS High Precision Microphone](https://robu.in/product/inmp441-mems-high-precision-omnidirectional-microphone-module-i2s/)**                                    | Captures real-time voice input                                    | `SCK=14`, `WS=15`, `SD=32` |
 | **[LM386 Audio Amplifier Module](https://robu.in/product/lm386-audio-amplifier-module/)**                                                                                   | Drives small speaker output                                       | Input from `DAC1 (GPIO25)` |
 | **[2inch 8Ohm 12W Midrange Speaker](https://www.rytronics.in/product/2inch-8ohm-12w-midrange-speaker-mid-bass-woofer-audio-speaker-subwoofer/)**                            | Plays synthesized voice from AI                                   | Connected to LM386         |
