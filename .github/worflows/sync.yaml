@@ -1,0 +1,26 @@
+name: Sync Python Server to Hugging Face Space
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - "server/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push code to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git remote add hf https://user:$HF_TOKEN@huggingface.co/spaces/arpy8/ESP32_Voice_Assistant_WS_Server
+          git config lfs.allowincompletepush true
+          git push hf `git subtree split --prefix server main`:main --force

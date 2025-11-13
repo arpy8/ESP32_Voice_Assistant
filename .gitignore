@@ -1,0 +1,6 @@
+.venv/
+
+secrets.h
+
+*.onnx
+*.json
