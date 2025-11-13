@@ -4,3 +4,5 @@ secrets.h
 
 *.onnx
 *.json
+
+*copy*
