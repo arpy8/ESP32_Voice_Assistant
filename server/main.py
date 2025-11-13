@@ -162,7 +162,6 @@ async def process_and_stream_audio(websocket, input_filename, client_id):
             bot_speech_text = f"It's {datetime.now(timezone(TIMEZONE)).strftime('%I:%M %p')} right now."
             print(f"Time query detected. Responding with: {speech_text}")
         elif "how is the weather" in speech_text.lower() or "how's the weather" in speech_text.lower():
-            
             bot_speech_text = f"It's {datetime.now(timezone(TIMEZONE)).strftime('%I:%M %p')} right now."
             print(f"Weather query detected. Responding with: {speech_text}")
         elif "what is the date" in speech_text.lower() or "what's the date" in speech_text.lower():
@@ -226,7 +225,6 @@ async def handle_client(websocket):
                 elif isinstance(message, str):
                     if message == "ping":
                         await websocket.send("pong")
-                        await stream_audio(websocket, "./audios/ping.wav")
                     elif message == "pause":
                         print(f"Pausing recording for client {client_id}...")
                         await websocket.send("Recording paused")
